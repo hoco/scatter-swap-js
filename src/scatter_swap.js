@@ -33,12 +33,13 @@ export default class ScatterSwap  {
   }
 
   rotate(array, count) {
-    if(count < 0) {
-      for(var i = 0; i < -count; i++) {
+    let reverse = count < 0
+    let rotateCount = Math.abs(count) % array.length;
+
+    for(var i = 0; i < rotateCount; i++) {
+      if(reverse) {
         array.unshift(array.pop());
-      }
-    } else {
-      for(var i = 0; i < count; i++) {
+      } else {
         array.push(array.shift());
       }
     }
