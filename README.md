@@ -2,6 +2,9 @@
 
 JavaScript implementation of Nathan and David Amick's [Scatter Swap](https://github.com/namick/scatter_swap)
 
+[![NPM](https://nodei.co/npm/scatter-swap.png)](https://nodei.co/npm/scatter-swap/)
+[![Build Status](https://travis-ci.org/hoco/scatter-swap-js.svg?branch=master)](https://travis-ci.org/hoco/scatter-swap-js)
+
 ## Usage
 
 ### Hashing
