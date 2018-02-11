@@ -6,7 +6,7 @@ export default class ScatterSwap  {
     this.digit = digit;
     this.digitArray = [...Array(digit)].map(() => 0);
 
-    let zeroPad = (this.digitArray.join("") + originalInteger.toString()).slice(-digit);
+    const zeroPad = (this.digitArray.join("") + originalInteger.toString()).slice(-digit);
     this.workingArray = zeroPad.split("").map((d) => Number(d));
   }
 
@@ -25,18 +25,18 @@ export default class ScatterSwap  {
   }
 
   numbers(digit = 10) {
-    var array = new Array(digit);
-    for(var i = 0; i < digit; i++) {
+    let array = new Array(digit);
+    for(let i = 0; i < digit; i++) {
       array[i] = i;
     }
     return array;
   }
 
   rotate(array, count) {
-    let reverse = count < 0
-    let rotateCount = Math.abs(count) % array.length;
+    const reverse = count < 0
+    const rotateCount = Math.abs(count) % array.length;
 
-    for(var i = 0; i < rotateCount; i++) {
+    for(let i = 0; i < rotateCount; i++) {
       if(reverse) {
         array.unshift(array.pop());
       } else {
@@ -47,7 +47,7 @@ export default class ScatterSwap  {
   }
 
   swapperMap(index) {
-    var array = this.numbers();
+    let array = this.numbers();
     return this.numbers().map((i) => {
       return this.rotate(array, index + i ^ this.spin).pop();
     });
@@ -73,8 +73,8 @@ export default class ScatterSwap  {
   }
 
   unscatter() {
-    var scatteredArray = this.workingArray;
-    let sumOfDigits = scatteredArray.reduce((pre, curr) => pre + curr);
+    let scatteredArray = this.workingArray;
+    const sumOfDigits = scatteredArray.reduce((pre, curr) => pre + curr);
     this.workingArray = [];
 
     this.digitArray.forEach(() => {
