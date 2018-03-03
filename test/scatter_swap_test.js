@@ -53,6 +53,17 @@ describe("ScatterSwap", () => {
           assert(target == reverseHashed);
         }
       });
+      context("64bit spin", () => {
+        it("should be reversible", () => {
+          for (let i = 0; i < 100; i++) {
+            const target = randomDigits(10);
+            const spin = randomDigits(9) + 9000000000;
+            const hashed = new ScatterSwap(target, spin).hash();
+            const reverseHashed = new ScatterSwap(Number(hashed), spin).reverseHash();
+            assert(target == reverseHashed);
+          }
+        });
+      });
     });
     context("specify digits", () => {
       it("should be specified digits", () => {

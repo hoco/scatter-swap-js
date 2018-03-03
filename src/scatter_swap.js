@@ -1,4 +1,5 @@
 "use strict";
+const b64 = require("bitwise64");
 
 export default class ScatterSwap  {
   constructor (originalInteger, spin = 0, digit = 10) {
@@ -49,7 +50,7 @@ export default class ScatterSwap  {
   swapperMap(index) {
     let array = this.numbers();
     return this.numbers().map((i) => {
-      return this.rotate(array, index + i ^ this.spin).pop();
+      return this.rotate(array, b64.xor(index + i, this.spin)).pop();
     });
   }
 
@@ -68,7 +69,7 @@ export default class ScatterSwap  {
   scatter() {
     let sumOfDigits = this.workingArray.reduce((pre, curr) => pre + curr);
     this.workingArray = this.digitArray.map(() => {
-      return this.rotate(this.workingArray, this.spin ^ sumOfDigits).pop();
+      return this.rotate(this.workingArray, b64.xor(this.spin, sumOfDigits)).pop();
     });
   }
 
@@ -79,7 +80,7 @@ export default class ScatterSwap  {
 
     this.digitArray.forEach(() => {
       this.workingArray.push(scatteredArray.pop());
-      this.workingArray = this.rotate(this.workingArray, (sumOfDigits ^ this.spin) * -1);
+      this.workingArray = this.rotate(this.workingArray, b64.xor(sumOfDigits, this.spin) * -1);
     });
   }
 }
